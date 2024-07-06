@@ -90,7 +90,7 @@ def about(request):
 
 def shipping_list(request):
     item_list = ShippingItem.objects.all()
-    paginator = Paginator(item_list, 10)  # Show 10 items per page
+    paginator = Paginator(item_list, 10) 
 
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
