@@ -18,12 +18,16 @@ from django.conf.urls.static import static
 from config import settings
 from django.contrib import admin
 from django.urls import path, include
+from .views import shipping_list
+from django.urls import path
+
 
 import shop
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
+    path('shipping-items/', shipping_list, name='shipping_list'),
     path('', include('shop.urls')),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
