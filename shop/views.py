@@ -1,5 +1,8 @@
 from django.db.models import Q
 from django.shortcuts import render, redirect
+from django.core.paginator import Paginator
+from .models import ShippingItem 
+
 
 # Create your views here.
 
@@ -83,3 +86,12 @@ def home(request):
 
 def about(request):
     return render(request, 'about.html')
+
+
+def shipping_list(request):
+    item_list = ShippingItem.objects.all()
+    paginator = Paginator(item_list, 10)  # Show 10 items per page
+
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'shipping_list.html', {'page_obj': page_obj})
